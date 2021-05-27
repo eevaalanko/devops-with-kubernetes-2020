@@ -14,4 +14,4 @@ spec:
     spec:
       containers:
         - name: main-app
-          image: yves6000/main-app
+          image: yves6000/main-app:1.15

@@ -1,10 +1,28 @@
+const express = require('express');
+const app = express();
+
+const port = process.env.PORT || 3000;
 
 const getHashNow = () => {
-    const randomHash = Math.random().toString(36).substr(2, 6)
-
-    console.log(randomHash)
-
-    setTimeout(getHashNow, 5000)
+    const date = new Date();
+    console.log(`hash: ${Math.random().toString(36).substr(2, 6)} date: ${date.toString()}`);
 }
 
-getHashNow()
+
+setInterval( () => {
+    getHashNow();
+}, 5000);
+
+
+app.get('/', (req, res) => {
+    res.send(getHashNow);
+});
+
+app.listen(port, () => {
+    getHashNow();
+});
+
+
+
+
+
