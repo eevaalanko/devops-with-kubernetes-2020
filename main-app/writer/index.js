@@ -11,7 +11,7 @@ const filePath = path.join(directory, "hashFile.txt")
 
 const saveHash = () => {
     const date = new Date();
-    const hash = `hash: ${Math.random().toString(36).substr(2, 6)} date: ${date.toString()}`
+    const hash = `${Math.random().toString(36).substr(2, 6)}: ${date.toString()}`
     console.log(hash)
     try {
         fs.writeFileSync(filePath, hash)
@@ -25,7 +25,6 @@ setInterval( () => {
     saveHash();
 }, 5000);
 
-console.log('Started')
 
 app.listen(PORT)
 
