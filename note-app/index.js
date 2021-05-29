@@ -1,19 +1,44 @@
-const Koa = require('koa')
-const app = new Koa()
+const express = require('express')
+const axios = require('axios')
+const fs = require('fs')
+const app = express()
 const PORT = process.env.PORT || 3000
-const createRandomString = () => Math.random().toString(36).substr(2, 6)
+const path = require('path')
+const directory = path.join('/', 'usr', 'src', 'app', 'images')
+const filePath = path.join(directory, 'dog.jpg')
 
-const startingString = createRandomString()
+const fileAlreadyExists = async () => new Promise(res => {
+    fs.stat(filePath, (err, stats) => {
+        if (err || !stats) return res(false)
+        return res(true)
+    })
+})
 
-app.use(async ctx => {
-    if (ctx.path.includes('favicon.ico')) return
-
-    const stringNow = createRandomString()
-    console.log('--------------------')
-    console.log(`Responding with ${stringNow}`)
-    ctx.body = `${startingString}: ${stringNow}`
-});
+const findAFile = async () => {
+    if (await fileAlreadyExists()) return
+    const response = await axios.get('https://picsum.photos/id/1062/200?grayscale', {responseType: 'stream'});
+    response.data.pipe(fs.createWriteStream(filePath))
+}
 
 
-console.log(`Started with ${startingString}`)
+app.use('/note-app/images', express.static(path.join(__dirname, 'images')))
+console.log(path.join(__dirname, 'images'))
+
+app.use('/todoapp/img', express.static(path.join(__dirname, 'images')))
+console.log(path.join(__dirname, 'images'))
+
+
+
+app.get('/note-app', (req, res) => {
+    findAFile().catch(e => {
+        console.log( e.message);
+    })
+    res.sendFile(path.join(__dirname + '/index.html'))
+})
+
+console.log('Started')
+
+findAFile()
+
 app.listen(PORT)
+

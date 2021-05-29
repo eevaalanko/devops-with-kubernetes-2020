@@ -6,7 +6,7 @@ spec:
   rules:
     - http:
         paths:
-          - path: /
+          - path: /note-app
             backend:
               serviceName: noteapp-svc
               servicePort: 2345
