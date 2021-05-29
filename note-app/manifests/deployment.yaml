@@ -17,7 +17,7 @@ spec:
 
       containers:
         - name: note-app
-          image: yves6000/note-app:1.3
+          image: yves6000/note-app:1.4
           volumeMounts:
             - mountPath: /usr/src/app/images
               name: images-volume

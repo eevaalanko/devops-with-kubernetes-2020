@@ -5,5 +5,23 @@
 
 <p>so much todos</p>
 <img src="note-app/images/dog.jpg" alt="Doggie">
+<form>
+        <input name="todo" />
+
+        <input type="submit" value="Add todo" />
+</form>
+<ul id="todos">
+</ul>
 
 </body>
+
+<script>
+    const todos = [ 'TODO1',  'TODO2']
+    const list = document.getElementById('todos')
+    todos.map(todo=> {
+        const listItem = document.createElement('li')
+        listItem.appendChild(document.createTextNode(todo))
+        list.appendChild(listItem)
+    });
+
+</script>

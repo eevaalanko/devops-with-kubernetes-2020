@@ -24,10 +24,6 @@ const findAFile = async () => {
 app.use('/note-app/images', express.static(path.join(__dirname, 'images')))
 console.log(path.join(__dirname, 'images'))
 
-app.use('/todoapp/img', express.static(path.join(__dirname, 'images')))
-console.log(path.join(__dirname, 'images'))
-
-
 
 app.get('/note-app', (req, res) => {
     findAFile().catch(e => {
