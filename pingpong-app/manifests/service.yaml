@@ -7,7 +7,12 @@ spec:
   type: ClusterIP
   selector:
     app: pingpong-app
+#  ports:
+#    - port: 2346
+#      protocol: TCP
+#      targetPort: 3000
   ports:
-    - port: 2346
+    - name: http
       protocol: TCP
-      targetPort: 3000
+      port: 80
+      targetPort: 8080

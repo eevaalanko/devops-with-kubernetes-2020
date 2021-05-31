@@ -23,7 +23,7 @@ spec:
             - name: mainapp-volume
               mountPath: /usr/src/app/files
         - name: main-app-reader
-          image: yves6000/main-app-reader:1.8
+          image: yves6000/main-app-reader:2.0
           volumeMounts: # Mount volume
             - name: mainapp-volume
               mountPath: /usr/src/app/files

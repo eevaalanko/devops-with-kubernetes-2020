@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 8080
 
 const fs = require('fs')
 const path = require('path')
@@ -24,11 +24,16 @@ const savePong = () => {
     pongCount++
 }
 
-savePong()
+// savePong()
 
-app.get('/pingpong', (req, res) => {
+/*app.get('/pingpong', (req, res) => {
     res.send(`pong ${pongCount}`)
     savePong()
     pongCount++
+})*/
+
+app.get('/', (req, res) => {
+    pongCount++
+    res.send(`${pongCount}`)
 })
 
