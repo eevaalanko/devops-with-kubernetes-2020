@@ -14,6 +14,8 @@ spec:
     spec:
       volumes:
         - name: images-volume
+          persistentVolumeClaim:
+            claimName: noteapp-claim
 
       containers:
         - name: note-app
