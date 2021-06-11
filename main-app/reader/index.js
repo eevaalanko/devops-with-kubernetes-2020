@@ -32,7 +32,7 @@ app.get('/', async (req, res) => {
     console.log(`hash: ${hash}`)
   //  res.send(`${hash}<br>${pong}`)
     console.log(`pongs: ${pongs}`)
-    res.send(`<p>${hash}</p><p>Ping / pongs: ${pongs}</p>`)
+    res.send(`<p>${process.env.MESSAGE}</p><p>${hash}</p><p>Ping / pongs: ${pongs}</p>`)
 })
 
 app.listen(port)

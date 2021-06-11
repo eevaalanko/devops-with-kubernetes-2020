@@ -25,6 +25,12 @@ spec:
               mountPath: /usr/src/app/files
         - name: main-app-reader
           image: yves6000/main-app-reader:2.0
+          env:
+            - name: MESSAGE
+              valueFrom:
+                configMapKeyRef:
+                  name: dotenv-configmap
+                  key: message
           volumeMounts: # Mount volume
             - name: mainapp-volume
               mountPath: /usr/src/app/files
