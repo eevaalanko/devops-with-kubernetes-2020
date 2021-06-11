@@ -18,8 +18,9 @@ spec:
             claimName: noteapp-claim
 
       containers:
-        - name: note-app
-          image: yves6000/note-app:1.4
+        - name: noteapp-frontend
+          image: yves6000/noteapp-frontend:1.2
           volumeMounts:
             - mountPath: /usr/src/app/images
               name: images-volume
+

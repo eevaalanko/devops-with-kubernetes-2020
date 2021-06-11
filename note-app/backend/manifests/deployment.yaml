@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: noteapp-backend-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: noteapp-backend
+  template:
+    metadata:
+      labels:
+        app: noteapp-backend
+    spec:
+      volumes:
+        - name: images-volume
+          persistentVolumeClaim:
+            claimName: noteapp-claim
+      containers:
+        - name: noteapp-backend
+          image: yves6000/noteapp-backend:1.15
+          volumeMounts:
+            - mountPath: /usr/src/app/images
+              name: images-volume
+
+

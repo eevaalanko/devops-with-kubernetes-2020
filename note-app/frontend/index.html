@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<body>
+
+<h1>TODO APP!</h1>
+
+<p>so much todos</p>
+<img src="note-app/images/dog.jpg" alt="Doggie">
+<form onSubmit = "handleSubmit()">
+    <input name="todo"/>
+    <input type="submit" value="Create TODO"/>
+</form>
+<ul id="todos">
+</ul>
+
+</body>
+
+<script>
+    const addNote = content => {
+        const list = document.getElementById('todos')
+        const listItem = document.createElement('li')
+        listItem.appendChild(document.createTextNode(content))
+        list.appendChild(listItem)
+    }
+    const getNotes = () => {
+        fetch("/todos")
+            .then(response => response.json())
+            .then(data => {
+                data.map(todo => {
+                    addNote(todo.text)
+                })
+            })
+    }
+
+    document.addEventListener('DOMContentLoaded', getNotes)
+
+    const handleSubmit = (event) => {
+        event.preventDefault()
+        const todoInput = document.getElementById('todo-input')
+        const content = {content: todoInput.value}
+
+        fetch("/todos", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(content),
+        })
+            .then(response => response.json())
+            .then(data => {
+                addNote(data.text)
+                todoInput.value = ''
+            })
+    }
+</script>

@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: noteapp-ingress
+  annotations:
+    traefik.ingress.kubernetes.io/rule-type: "PathPrefixStrip"
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              serviceName: noteapp-svc
+              servicePort: 2345
+          - path: /api
+            pathType: Prefix
+            backend:
+              serviceName: noteapp-backend-svc
+              servicePort: 2345
