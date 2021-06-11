@@ -2,6 +2,7 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: noteapp-ingress
+  namespace: noteapp-namespace
   annotations:
     traefik.ingress.kubernetes.io/rule-type: "PathPrefixStrip"
 spec:

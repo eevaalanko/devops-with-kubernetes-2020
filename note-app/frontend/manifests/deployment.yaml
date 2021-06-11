@@ -2,11 +2,13 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: noteapp-dep
+  namespace: noteapp-namespace
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: noteapp
+
   template:
     metadata:
       labels:
